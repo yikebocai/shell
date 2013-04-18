@@ -1,10 +1,9 @@
-
 ## 1. pull_codereview_branches.sh
 >做Codereview时，经常需要把代码分支和它对应的主干拉到本地，然后使用文件比较工具，比如Mac下的DiffMerge来做代码变更对比，手工拉取非常不便，写了脚本来自动实现。唯一麻烦就是需要把分支拷贝到一个文件，然后才能执行shell命令。
 
 自动从指定的文件中解析branches和它对应的主干，并从服务器拉取到本地，格式如下,`local_dir`可选默认为*/Users/zxb/codereview*
 ```bash
-   sh pull_codereview.sh branches_file [local_dir]
+   sh pull_codereview_branches.sh branches_file [local_dir]
 ```
 *branches_file*的文件格式如下，每个一行，目录和url空格分隔
 ```
