@@ -15,7 +15,7 @@ if [[ -n $build ]]; then
    exit
 fi
 
-echo "[info] parse all direct dependency jar absolutely path and put them into map"
+echo "[info] parse all direct dependency jar's absolutely path"
 dep_jar_list=`cat dt |grep '] +-'|awk -F ' ' '{print $3}'|awk -F ':' '{gsub(/\./,"/",$1);print "/Users/zxb/.m2/repository/"$1"/"$2"/"$4"/"$2"-"$4"."$3}'`
 declare -A dep_jar_map
 for dep_jar in $dep_jar_list
@@ -23,7 +23,7 @@ do
   dep_jar_map[$dep_jar]="Y"
 done
 
-echo "[info] find all dependency class,and put them into another map"
+echo "[info] find all dependency classes,wait for some minutes ..."
 mvn eclipse:clean eclipse:eclipse > /dev/null & 
 cd ..
 declare -A jar_map
@@ -55,7 +55,7 @@ do
 done
 
 
-echo "[info] list all java files,parse import class,get jar package from jar_map"
+echo "[info] list all java files,parse import class,get it's jar package"
 list=`find .|grep src|grep java$`
 for line in $list 
 do
@@ -82,7 +82,7 @@ do
                 echo "[warn] java:$line"
                 echo "[warn] import:$import_line"
                 echo "[warn] jar:$jar_path"
-                echo "[warn] \n"  
+                echo "[warn] "  
              fi
           fi
        fi
