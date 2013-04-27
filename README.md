@@ -71,8 +71,8 @@ cat cd.log|grep import|sort|uniq
 
 **说明**
 
-1.因为内部类没有生成单独的class文件，因此无法检测，会认为是间接依赖的jar引入的，请忽略
-2.如果一些基础框架虽然没有直接依赖，但能够确保它肯定在别的jar中会引入进来，可以修改源代码设置忽略的包名，如下所示：
+1. 因为内部类没有生成单独的class文件，因此无法检测，会认为是间接依赖的jar引入的，请忽略
+2. 如果一些基础框架虽然没有直接依赖，但能够确保它肯定在别的jar中会引入进来，可以修改源代码设置忽略的包名，如下所示：
 ```
 ignore_classes=("java" "sun" "com.alibaba.service" "com.alibaba.turbine" "com.alibaba.common" "com.alibaba.webx" "or    g.apache.commons" "com.alibaba.intl.commons" "org.junit" "org.apache.log4j" "com.alibaba.intl.risk.ruleengine")
 ```
