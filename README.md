@@ -29,15 +29,15 @@ drwxr-xr-x  4 zxb staff 136  4  7 19:26 share-intl-base-ext-trunk/
 
 **基本思路**
 
-1.通过Maven命令`mvn dependency:tree`来首先生成应用的依赖关系
-2.解析生成的依赖关系文件，找出直接依赖的jar或car包
-3.找到Maven仓库中该jar或car包实际的绝对路径
-4.使用`jar -tvf`列表该jar或car中所有的class文件完整名
-5.将class文件名和对应的jar或car包放到Map中用于后面的快速查询
-6.使用`find .|grep java$`命令，找到应用中所有java源文件
-7.使用`cat xxx.java|grep ^import`命令找出该java源文件导入的所有类名
-8.把类名转成和jar中一样的表示形式，查询它是否在Map中存在
-9.如果存在说明不是间接依赖，否则打印该Java源文件路径和导入的类名
+1. 通过Maven命令`mvn dependency:tree`来首先生成应用的依赖关系
+2. 解析生成的依赖关系文件，找出直接依赖的jar或car包
+3. 找到Maven仓库中该jar或car包实际的绝对路径
+4. 使用`jar -tvf`列表该jar或car中所有的class文件完整名
+5. 将class文件名和对应的jar或car包放到Map中用于后面的快速查询
+6. 使用`find .|grep java$`命令，找到应用中所有java源文件
+7. 使用`cat xxx.java|grep ^import`命令找出该java源文件导入的所有类名
+8. 把类名转成和jar中一样的表示形式，查询它是否在Map中存在
+9. 如果存在说明不是间接依赖，否则打印该Java源文件路径和导入的类名
 
 **使用方法**
 
