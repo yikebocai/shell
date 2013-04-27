@@ -11,14 +11,14 @@ echo "[info] maven repository is $M2_REPO"
 
 echo "[info] generate dependency tree"
 cd $2/all
-#mvn dependency:tree > dt
+mvn dependency:tree > dt
 build=`cat dt|grep 'BUILD ERROR'`
 if [[ -n $build ]]; then
    echo "[error] build error,please check first"
    exit
 fi
 
-echo "[info] get all direct dependency jar's absolutely path"
+echo "[info] get all direct dependency jar or car's absolutely path"
 dep_jar_list=`cat dt |grep '] +-'|grep -v war$|awk -F ' ' '{print $3}'|awk -F ':' '{gsub(/\./,"/",$1);print "/Users/zxb/.m2/repository/"$1"/"$2"/"$4"/"$2"-"$4"."$3}'|sort|uniq`
 
 echo "[info] get all classes of a jar"
@@ -26,20 +26,28 @@ declare -A jar_map
 for dep_jar in $dep_jar_list
 do
    if [ -f $dep_jar ]; then
-     #echo "[debug] $dep_jar"
+     echo "[debug] $dep_jar"
 
      #list all classes in jar 
      class_list=`jar -tvf $dep_jar|grep class$|awk -F ' ' '{print $8}'`
      for class in $class_list
      do 
-       jar_map[$class]="$dep_jar"
-       #echo "[debug]    $class"
+       classpath=$class
+       #only care class file
+       if [ ${class:(-5)} == "class" ]; then
+         #if car,remove prefix 'WEB-INF/classes/' 
+         if [ ${dep_jar:(-3)} == "car" ];then
+            classpath=${class:16:${#class}}
+         fi
+         jar_map[$classpath]="$dep_jar"
+         #echo "[debug]    $classpath"
+       fi
      done 
    fi
 done
 
 echo "[info] list all java files,parse import class,get it's jar path"
-list=`find ..|grep src|grep -v Test.java$|grep java$`
+list=`find ..|grep src|grep -v java.test|grep -v Test.java$|grep java$`
 for line in $list 
 do
    #echo $line
