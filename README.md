@@ -36,7 +36,7 @@ drwxr-xr-x  4 zxb staff 136  4  7 19:26 share-intl-base-ext/
 drwxr-xr-x  4 zxb staff 136  4  7 19:26 share-intl-base-ext-trunk/
 ```
 
-## check_dependency.sh
+## 2.check_dependency.sh
 >最近发生几次间接依赖导致的主干代码编译失败的问题，原因都是因为在我们的应用代码使用了一个间接依赖进来的jar包的一个类，但这个间接依赖jar在别人升级时去掉了，导致我们应用编译失败。另外还看到很多不合理的工具类使用，比如StringUtil和StringUtils，有很多内部的jar中也自己实现这个东东，而我们实际上是想使用apache.common包中的工具类，在Eclipse中自动导入时，没有注意就导入了一个某个业务jar的工具类，别人在做升级时如果对该工具类做了修改，也会导致我们的应用编译失败。因此，想写一个shell脚本来自动检测依赖关系，把不正常的依赖类打印出来。
 
 **基本思路**
@@ -89,5 +89,7 @@ cat cd.log|grep import|sort|uniq
 ignore_classes=("java" "sun" "com.alibaba.service" "com.alibaba.turbine" "com.alibaba.common" "com.alibaba.webx" "or    g.apache.commons" "com.alibaba.intl.commons" "org.junit" "org.apache.log4j" "com.alibaba.intl.risk.ruleengine")
 ```
 
+## 3.extract_idb_id.sh
+从idb里查询出来的id，如果要从浏览器里Copy出来，你就会发现有一行很烦人的序号没有去掉，执行该脚本直接得到纯id号
  
 
