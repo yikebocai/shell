@@ -73,6 +73,8 @@ alias gitc='git commit -m '
 alias gitps='git push origin master'
 alias gitpl='git pull'
 alias gitst='git status'
+alias gitrm="git rm"
+alias gitd="git diff"
 
 #other
 alias tfn='tail -fn 200'
