@@ -135,7 +135,10 @@ alias sips='sips -Z'
 export PATH=/Users/zxb/work/shell:$PATH
 
 ZOOKEEPER_HOME='/Users/zxb/app/zookeeper-3.4.5'
-export PATH=$ZOOKEEPER_HOME/bin:$ZOOKEEPER_HOME/conf:$PATH
-
-# Customize to your needs...
-export PATH=$PATH:/Users/zxb/app/zookeeper-3.4.5/bin:/Users/zxb/app/zookeeper-3.4.5/conf:/Users/zxb/work/shell:/usr/local/opt/coreutils/libexec/gnubin:/usr/alibaba/maven/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+export SVN_EDITOR=vim
+export JAVA_HOME=/usr/alibaba/java
+export JBOSS_HOME=/usr/alibaba/jboss
+export APACHE_HOME=/usr/alibaba/httpd
+export M2_HOME=/usr/alibaba/maven
+export MAVEN_OPTS="-Xms2024m -Xmx2024m -Dfile.encoding=UTF-8"
+export PATH=$M2_HOME/bin:$ZOOKEEPER_HOME/bin:$PATH

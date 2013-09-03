@@ -16,7 +16,7 @@ alias egrep='egrep --color'
 
 
 #ssh server
-alias ssh@server='ssh xinbo.zhangxb@shterm.alibaba-inc.com'
+alias ssh@server='ssh levy.liul@login1.cm3.taobao.org'
 alias ssh@simbo='ssh simbo@10.19.6.48'
 alias mysql@dev='mysql -urisk -prisk -h10.20.149.13 -P3306 -b risk'
 alias mysql@ut='mysql -utest -p1qaz@2wsx -h10.20.149.16 -P3306 -b ointest_ut'
@@ -25,7 +25,7 @@ alias mysql@auto='mysql -utest -p1qaz@2wsx -h10.20.154.175 -b ointest'
 alias mysql@perf='mysql -uointest_test -pointest_test -h10.20.129.146 -b ointest_test'
 alias mysql@sea='mysql -uroot -p123456 -h10.20.157.171 -b sea_bridge'
 alias ssh@vps='ssh admin@192.154.105.222'
-alias gfw='ssh -CNgf guest@192.154.105.222 -D 127.0.0.1:7077'
+alias gfw='ssh -CNgf guest@192.154.105.222 -D 127.0.0.1:7070'
 
 #maven cmd
 alias mvna='mvn archetype:generate'
@@ -46,6 +46,7 @@ alias mvnia='mvn clean  install -Dmaven.test.skip=true -Dautoconf.skip'
 alias mvncs='sudo mv /usr/alibaba/maven/conf/settings.xml /usr/alibaba/maven/conf/settings.xml2'
 #move maven settings.xml to alibaba config
 alias mvnca='sudo mv /usr/alibaba/maven/conf/settings.xml2 /usr/alibaba/maven/conf/settings.xml'
+alias mvnj='mvn idea:clean idea:idea  -Duse.release.version'
 
 #svn cmd
 alias svi='svn info'
@@ -89,9 +90,12 @@ alias rmf='rm -rf'
 alias cpf='cp -rf'
 #alias netstat='netstat -tlnp'
 alias clojure='java -cp /Users/zxb/app/clojure-1.5.1/clojure-1.5.1.jar clojure.main'
-alias lein='/Users/zxb/app/lein'
+#alias lein='/Users/zxb/app/lein'
 alias bower='/usr/local/share/npm/bin/bower'
 alias lessc='/Users/zxb/work/less.js/bin/lessc'
 alias sips='sips -Z'
 
 export PATH=/Users/zxb/work/shell:$PATH
+
+ZOOKEEPER_HOME='/Users/zxb/app/zookeeper-3.4.5'
+export PATH=$ZOOKEEPER_HOME/bin:$ZOOKEEPER_HOME/conf:$PATH
