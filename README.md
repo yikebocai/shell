@@ -91,5 +91,21 @@ ignore_classes=("java" "sun" "com.alibaba.service" "com.alibaba.turbine" "com.al
 
 ## 3.extract_idb_id.sh
 从idb里查询出来的id，如果要从浏览器里Copy出来，你就会发现有一行很烦人的序号没有去掉，执行该脚本直接得到纯id号
+
+## 4.check_jar_conflict.sh
+>同一个jar包有可能会有不同的gid和aid，因此会导致jar包冲突，运行期引起不可预知的错误
+
+实现原理：
+* 使用`mvn dependency:tree`生成依赖关系树
+* 找到关系树中每个jar包在maven仓库中的位置
+* 使用`jar -tvf`得到每个jar中的class文件，并将class文件放到Map中
+* 检查class文件是否已在其它jar中存在
+
+注意事项：
+* 保证项目编译能通过
+
+使用方式：
+* 把sh脚本考到顶级pom同一文件夹下
+* 执行`./check_jar_conflict.sh`
  
 
